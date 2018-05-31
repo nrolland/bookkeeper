@@ -5,13 +5,13 @@ module Bookkeeper.Internal where
 import GHC.OverloadedLabels
 import GHC.Generics
 import qualified Data.Type.Map as Map
-import GHC.TypeLits (Symbol, KnownSymbol, TypeError, ErrorMessage(..))
+import GHC.TypeLits (Symbol, KnownSymbol, symbolVal, TypeError, ErrorMessage(..))
 import Data.Default.Class (Default(..))
 import Data.Kind (Type)
 import Data.Type.Map (Map, Mapping((:->)))
 import Data.Monoid ((<>))
 import Data.List (intercalate)
-
+import Data.Dynamic
 import Bookkeeper.Internal.Errors
 
 ------------------------------------------------------------------------------
@@ -59,6 +59,56 @@ instance ( Default (Book' xs)
          , Default v
          ) => Default (Book' ((k :=> v) ': xs)) where
   def = Book (Map.Ext Map.Var def (getBook def))
+
+-- idealement traversable
+-- mais besoin de type in type ?
+
+class ToValue a where
+   toValue :: a -> [(String, Dynamic)]
+
+instance ToValue (Book' '[]) where
+  toValue _ = []
+
+instance ( ToValue (Book' xs)
+          , KnownSymbol k
+          , Typeable v
+          ) => ToValue (Book' ((k :=> v) ': xs)) where
+   toValue (Book (Map.Ext k v rest)) = (show k, toDyn v):toValue (Book rest)
+
+-- idealement un dag representant l'ensemble des chemins
+class HasEntries t where
+  hasEntries :: Proxy t -> [(String, TypeRep)]
+
+instance HasEntries (Book' '[]) where
+  hasEntries _ = []
+
+instance (HasEntries (Book' xs)
+         ,KnownSymbol k
+         ,Typeable v
+         ) => HasEntries (Book' ((k :=> v) ': xs)) where
+  hasEntries _ = (symbolVal(Key:: Key k), typeRep(Proxy :: Proxy v)): hasEntries (Proxy :: Proxy (Book' xs))
+
+
+type family FieldType b f where
+  FieldType (Book' ((k :=> v) ': xs)) k = v
+  FieldType (Book' ((o :=> v) ': xs)) k = FieldType (Book' xs) k
+
+
+--- je veux parcourir l'arbre et construire une fonction
+--  qui prend un book en entree, et appelle field sur les champs normaux
+--  et recurse sur les listes de Book -> c'est la fct qui
+
+
+-- cas 1 compter en cps sans donner la rep -- l'etat est chez le client, qui ne recurse pas
+-- cas 2 on rajoute la rep pour que le client controle la recursion
+-- class HasValue t where
+-- --  type Value t r :: Type
+--   valOf :: Proxy t -> ((String, TypeRep) -> r) -> r -- Value t r
+
+-- instance HasValue
+
+
+
 
 -- | A book with no records. You'll usually want to use this to construct
 -- books.

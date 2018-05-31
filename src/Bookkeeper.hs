@@ -40,6 +40,11 @@ module Bookkeeper
 
   -- * From Haskell record
   , fromRecord
+  
+
+  -- * Value level
+  , toValue
+  , hasEntries
 
   -- * Re-exports
   , (&)
