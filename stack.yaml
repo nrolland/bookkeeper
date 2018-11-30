@@ -1,4 +1,7 @@
-resolver: nightly-2017-08-24
+#resolver: lts-9.21 does not work with this lts 
+#resolver: lts-12.20
+#resolver: lts-11.22
+resolver: nightly-2018-11-29
 packages:
 - '.'
 extra-deps:

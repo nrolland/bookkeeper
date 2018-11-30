@@ -49,6 +49,9 @@ instance Eq (Book' '[]) where
 instance (Eq val, Eq (Book' xs)) => Eq (Book' ((field :=> val) ': xs)  ) where
   Book (Map.Ext _ a as) == Book (Map.Ext _ b bs) = a == b && Book as == Book bs
 
+#if MIN_VERSION_base(4,11,0)
+instance Semigroup  (Book' '[]) where (<>) = mappend
+#endif
 instance Monoid (Book' '[]) where
   mempty = emptyBook
   _ `mappend` _ = emptyBook
@@ -236,7 +239,7 @@ instance
   fromGeneric (l :*: r)
     = Book $ Map.union (getBook (fromGeneric l)) (getBook (fromGeneric r))
 
-type family Expected a where
+type family Expected (a :: k -> Type) :: k where
   Expected (l :+: r) = TypeError ('Text "Cannot convert sum types into Books")
   Expected U1        = TypeError ('Text "Cannot convert non-record types into Books")
 
