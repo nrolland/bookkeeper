@@ -1,11 +1,13 @@
--- This file has been generated from package.yaml by hpack version 0.20.0.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.36.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 919c9bd63ad7efe1c1c555270f3970af8bead66e26cb198aca395daf0d1abc13
+-- hash: ecef739b4b4c0da0f5492732943ec779bf3f3c16e66e4ac1248d97f94126313a
 
 name:           bookkeeper
-version:        0.2.5
+version:        0.2.6
 synopsis:       Anonymous records and overloaded labels
 description:    Please see README.md for more information and examples.
 category:       Data Structures, Records
@@ -16,14 +18,13 @@ maintainer:     jkarni@gmail.com
 copyright:      (c) Julian K. Arni
 license:        BSD3
 license-file:   LICENSE
-tested-with:    GHC == 8.0.1, GHC == 8.2.1
+tested-with:
+    GHC == 8.0.1, GHC == 8.2.1
 build-type:     Simple
-cabal-version:  >= 1.10
-
 extra-source-files:
     CHANGELOG.md
-    package.yaml
     README.md
+    package.yaml
 
 source-repository head
   type: git
@@ -32,10 +33,33 @@ source-repository head
 library
   hs-source-dirs:
       src
-  default-extensions: AutoDeriveTypeable ConstraintKinds DataKinds DefaultSignatures DeriveFunctor DeriveGeneric DeriveFoldable DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs MultiParamTypeClasses KindSignatures TypeInType OverloadedStrings RankNTypes ScopedTypeVariables TypeApplications TypeFamilies TypeOperators OverloadedLabels MagicHash
+  default-extensions:
+      AutoDeriveTypeable
+      ConstraintKinds
+      DataKinds
+      DefaultSignatures
+      DeriveFunctor
+      DeriveGeneric
+      DeriveFoldable
+      DeriveTraversable
+      FlexibleContexts
+      FlexibleInstances
+      FunctionalDependencies
+      GADTs
+      MultiParamTypeClasses
+      KindSignatures
+      TypeInType
+      OverloadedStrings
+      RankNTypes
+      ScopedTypeVariables
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      OverloadedLabels
+      MagicHash
   ghc-options: -Wall
   build-depends:
-      base >=4.9 && <4.11
+      base >=4.9 && <4.13
     , data-default-class
     , type-level-sets
   exposed-modules:
@@ -51,7 +75,7 @@ executable readme
       exec
   ghc-options: -Wall -pgmL markdown-unlit -fno-warn-unused-top-binds
   build-depends:
-      base >=4.9 && <4.11
+      base >=4.9 && <4.13
     , bookkeeper
     , data-default-class
     , markdown-unlit
@@ -63,11 +87,34 @@ test-suite doctest
   main-is: Doctest.hs
   hs-source-dirs:
       doctest
-  default-extensions: AutoDeriveTypeable ConstraintKinds DataKinds DefaultSignatures DeriveFunctor DeriveGeneric DeriveFoldable DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs MultiParamTypeClasses KindSignatures TypeInType OverloadedStrings RankNTypes ScopedTypeVariables TypeApplications TypeFamilies TypeOperators OverloadedLabels MagicHash
+  default-extensions:
+      AutoDeriveTypeable
+      ConstraintKinds
+      DataKinds
+      DefaultSignatures
+      DeriveFunctor
+      DeriveGeneric
+      DeriveFoldable
+      DeriveTraversable
+      FlexibleContexts
+      FlexibleInstances
+      FunctionalDependencies
+      GADTs
+      MultiParamTypeClasses
+      KindSignatures
+      TypeInType
+      OverloadedStrings
+      RankNTypes
+      ScopedTypeVariables
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      OverloadedLabels
+      MagicHash
   ghc-options: -Wall
   build-depends:
       Glob >=0.7 && <0.9
-    , base >=4.9 && <4.11
+    , base >=4.9 && <4.13
     , data-default-class
     , doctest >=0.9 && <0.12
     , type-level-sets
@@ -81,11 +128,34 @@ test-suite spec
   main-is: Spec.hs
   hs-source-dirs:
       test
-  default-extensions: AutoDeriveTypeable ConstraintKinds DataKinds DefaultSignatures DeriveFunctor DeriveGeneric DeriveFoldable DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs MultiParamTypeClasses KindSignatures TypeInType OverloadedStrings RankNTypes ScopedTypeVariables TypeApplications TypeFamilies TypeOperators OverloadedLabels MagicHash
+  default-extensions:
+      AutoDeriveTypeable
+      ConstraintKinds
+      DataKinds
+      DefaultSignatures
+      DeriveFunctor
+      DeriveGeneric
+      DeriveFoldable
+      DeriveTraversable
+      FlexibleContexts
+      FlexibleInstances
+      FunctionalDependencies
+      GADTs
+      MultiParamTypeClasses
+      KindSignatures
+      TypeInType
+      OverloadedStrings
+      RankNTypes
+      ScopedTypeVariables
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      OverloadedLabels
+      MagicHash
   ghc-options: -Wall
   build-depends:
       QuickCheck >=2.8 && <2.11
-    , base >=4.9 && <4.11
+    , base >=4.9 && <4.13
     , bookkeeper
     , data-default-class
     , hspec >2 && <3
@@ -100,10 +170,33 @@ benchmark bench
   main-is: Main.hs
   hs-source-dirs:
       bench
-  default-extensions: AutoDeriveTypeable ConstraintKinds DataKinds DefaultSignatures DeriveFunctor DeriveGeneric DeriveFoldable DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs MultiParamTypeClasses KindSignatures TypeInType OverloadedStrings RankNTypes ScopedTypeVariables TypeApplications TypeFamilies TypeOperators OverloadedLabels MagicHash
+  default-extensions:
+      AutoDeriveTypeable
+      ConstraintKinds
+      DataKinds
+      DefaultSignatures
+      DeriveFunctor
+      DeriveGeneric
+      DeriveFoldable
+      DeriveTraversable
+      FlexibleContexts
+      FlexibleInstances
+      FunctionalDependencies
+      GADTs
+      MultiParamTypeClasses
+      KindSignatures
+      TypeInType
+      OverloadedStrings
+      RankNTypes
+      ScopedTypeVariables
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      OverloadedLabels
+      MagicHash
   ghc-options: -Wall -Wall
   build-depends:
-      base >=4.9 && <4.11
+      base >=4.9 && <4.13
     , bookkeeper
     , criterion
     , data-default-class

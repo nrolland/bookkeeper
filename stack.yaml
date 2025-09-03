@@ -1,9 +1,11 @@
-#resolver: lts-9.21 does not work with this lts 
-#resolver: lts-12.20
-#resolver: lts-11.22
-resolver: nightly-2018-11-29
+resolver: lts-24.8
+#resolver: nightly-2018-11-29
 packages:
 - '.'
+
 extra-deps:
-- 'type-level-sets-0.8.0.0'
+- git: https://github.com/dorchard/type-level-sets
+  commit: d71becf49c092cd7697f39e4f4fb55b289af3d31
+#- ../type-level-sets
 flags: {}
+#allow-newer: true
